@@ -1,0 +1,12 @@
+module load fast_protein_cluster
+
+# Set up the scratch directory
+WD=tmp/test_cluster
+/bin/mkdir -p $WD
+
+# Transfer input files
+DATADIR=$FASTPROTEINCLUSTERHOME/test
+cd $DATADIR
+/bin/cp -r list 1af7_ test_rmsd_sse3.sh $WD/
+
+# Run the cluster

@@ -1,5 +1,6 @@
 # Certain folders
 fast_protein_cluster/test/1af7_
+fireworks/localtest/db
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

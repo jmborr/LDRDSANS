@@ -1,0 +1,1 @@
+{"updated_on": "2016-10-20T20:51:48.701403", "fw_id": -1, "spec": {"_tasks": [{"use_shell": true, "_fw_name": "ScriptTask", "script": ["cd /projects/development/LDRDSANS/fireworks/localtest; ./test_cluster.sh"]}]}, "created_on": "2016-10-20T20:51:48.701397", "name": "Unnamed FW"}

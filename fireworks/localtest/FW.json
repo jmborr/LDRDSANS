@@ -1,0 +1,43 @@
+{
+    "name": "Unnamed FW", 
+    "launches": [
+        {
+            "fworker": {
+                "category": "", 
+                "query": "{}", 
+                "name": "Automatically generated Worker", 
+                "env": {}
+            }, 
+            "trackers": [], 
+            "ip": "127.0.1.1", 
+            "fw_id": 1, 
+            "state": "RUNNING", 
+            "host": "irun", 
+            "launch_dir": "/projects/development/LDRDSANS/fireworks/localtest", 
+            "action": null, 
+            "launch_id": 1, 
+            "state_history": [
+                {
+                    "updated_on": "2016-10-20T20:51:48.798161", 
+                    "state": "RUNNING", 
+                    "created_on": "2016-10-20T20:51:48.798154"
+                }
+            ]
+        }
+    ], 
+    "fw_id": 1, 
+    "state": "RUNNING", 
+    "created_on": "2016-10-20T20:51:48.701397", 
+    "updated_on": "2016-10-20T20:51:48.799579", 
+    "spec": {
+        "_tasks": [
+            {
+                "use_shell": true, 
+                "_fw_name": "ScriptTask", 
+                "script": [
+                    "cd /projects/development/LDRDSANS/fireworks/localtest; ./test_cluster.sh"
+                ]
+            }
+        ]
+    }
+}
