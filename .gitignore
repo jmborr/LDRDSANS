@@ -1,6 +1,7 @@
-# Certain folders
-fast_protein_cluster/test/1af7_
-fireworks/localtest/db
+# Scratch and temporary files
+junk*
+*~
+*#
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -91,3 +92,8 @@ ENV/
 
 # Rope project settings
 .ropeproject
+
+# Ignore certain folders and directories
+fast_protein_cluster/test/1af7_
+fireworks/localtest/db
+
