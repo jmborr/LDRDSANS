@@ -1,0 +1,3 @@
+[submodule "fast_protein_cluster"]
+	path = fast_protein_cluster
+	url = https://github.com/camm/fast_protein_cluster.git
