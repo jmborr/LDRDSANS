@@ -103,5 +103,4 @@ ENV/
 *.tpr
 fast_protein_cluster/test/1af7_
 fireworks/localtest/db
-cel7a/initial_runs/topol.pdb
-cel7a/initial_runs/1/topol.pdb
+cel7a
