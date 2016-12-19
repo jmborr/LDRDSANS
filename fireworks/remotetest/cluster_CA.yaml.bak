@@ -1,0 +1,12 @@
+spec:
+  _category: 'titan'
+  _tasks:
+  - _fw_name: ScriptTask
+    script: >
+      workdir=/lustre/atlas/scratch/jmborr/bip141/cel7a/initial_runs/1/titan;
+      cd $workdir;
+      load fast_protein_cluster;
+      setenv OMP_NUM_THREADS 8;
+      ls > somelog.log
+      aprun -n 1 -d 8 -j 1 fast_protein_cluster -i CA -o CA --binary_coords --rmsd --nclusters 10 --nthreads 8 --hcomplete --gpu;
+

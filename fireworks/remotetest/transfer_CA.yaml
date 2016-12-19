@@ -1,0 +1,32 @@
+fws:
+- fw_id: 1
+  spec:
+    _category: ftp
+    _tasks:
+    - _fw_name: ScriptTask
+      script: >
+        local=/SNS/lustre/CAMM/users/jbq/research/LDRDSANS/cel7a/initial_runs/1;
+        remote=/lustre/atlas/scratch/jmborr/bip141/cel7a/initial_runs/1/titan;
+        file=CA.names;
+        id=$(ssh jmborr@cli.globusonline.org transfer --generate-id);
+        ssh jmborr@cli.globusonline.org transfer --taskid $id -- neutrons#dtn01.sns.gov$local/$file olcf#dtn_atlas$remote/$file;
+        ssh jmborr@cli.globusonline.org wait $id;
+        file=CA.binpos;
+        id=$(ssh jmborr@cli.globusonline.org transfer --generate-id);
+        ssh jmborr@cli.globusonline.org transfer --taskid $id -- neutrons#dtn01.sns.gov$local/$file olcf#dtn_atlas$remote/$file;
+        ssh jmborr@cli.globusonline.org wait $id;
+        echo $(date) 'step 1 on' $(hostname) >> /ccs/home/jmborr/cluster_CA.log;
+- fw_id: 2
+  spec:
+    _category: ftp
+    _tasks:
+    - _fw_name: ScriptTask
+      script: >
+        echo $(date) 'step 2 on' $(hostname) >> /ccs/home/jmborr/cluster_CA.log;
+        id=$(ssh jmborr@cli.globusonline.org transfer --generate-id);
+        ssh jmborr@cli.globusonline.org transfer --taskid $id -- olcf#dtn_atlas/ccs/home/jmborr/cluster_CA.log neutrons#dtn01.sns.gov/SNS/users/jbq/cluster_CA.log;
+        ssh jmborr@cli.globusonline.org wait $id;
+links:
+  1:
+  - 2
+metadata: {}

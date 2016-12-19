@@ -1,0 +1,8 @@
+spec:
+  _category: 'ftp'
+  _tasks:
+  - _fw_name: ScriptTask
+    script: >
+      id=$(ssh jmborr@cli.globusonline.org transfer --generate-id);
+      ssh jmborr@cli.globusonline.org transfer --taskid $id -- olcf#dtn_atlas/lustre/atlas/scratch/jmborr/bip141/cel7a/initial_runs/1/titan/CA.clusters neutrons#dtn01.sns.gov/SNS/lustre/CAMM/users/jbq/research/LDRDSANS/cel7a/initial_runs/1/CA.clusters;
+      ssh jmborr@cli.globusonline.org wait $id

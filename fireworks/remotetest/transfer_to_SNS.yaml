@@ -1,0 +1,20 @@
+spec:
+  _category: 'ftp'
+  _tasks:
+  - _fw_name: ScriptTask
+    script: >
+      local=/SNS/users/jbq/Downloads;
+      remote=/lustre/atlas/scratch/jmborr/bip141/cel7a/initial_runs/1/titan;
+      ssh jmborr@cli.globusonline.org profile -n off;
+      file=CA.cluster.stats;
+      id=$(ssh jmborr@cli.globusonline.org transfer --generate-id);
+      ssh jmborr@cli.globusonline.org transfer --taskid $id -- olcf#dtn_atlas$remote/$file neutrons#dtn01.sns.gov$local/$file;
+      ssh jmborr@cli.globusonline.org wait $id;
+      file=CA.agglomeration.history;
+      id=$(ssh jmborr@cli.globusonline.org transfer --generate-id);
+      ssh jmborr@cli.globusonline.org transfer --taskid $id -- olcf#dtn_atlas$remote/$file neutrons#dtn01.sns.gov$local/$file;
+      ssh jmborr@cli.globusonline.org wait $id;
+      file=CA.clusters;
+      id=$(ssh jmborr@cli.globusonline.org transfer --generate-id);
+      ssh jmborr@cli.globusonline.org transfer --taskid $id -- olcf#dtn_atlas$remote/$file neutrons#dtn01.sns.gov$local/$file;
+      ssh jmborr@cli.globusonline.org wait $id;
