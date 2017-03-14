@@ -1,0 +1,82 @@
+fws:
+- fw_id: 1
+  spec:
+    _category: 'ftp'
+    _tasks:
+    - _fw_name: ScriptTask
+      script: >
+        local=/SNS/CAMM/users/jbq/research/LDRDSANS/scrkinase;
+        remote=/lustre/atlas/scratch/jmborr/bip141/srckinase;
+        ssh jmborr@cli.globusonline.org profile -n off;
+        file=d_1-144_h_145-250_d2o_043.pdb;
+        id=$(ssh jmborr@cli.globusonline.org transfer --generate-id);
+        ssh jmborr@cli.globusonline.org transfer --taskid $id -- neutrons#dtn01.sns.gov$local/$file olcf#dtn_atlas$remote/$file;
+        ssh jmborr@cli.globusonline.org wait $id;
+        file=sassena.dcd;
+        id=$(ssh jmborr@cli.globusonline.org transfer --generate-id);
+        ssh jmborr@cli.globusonline.org transfer --taskid $id -- neutrons#dtn01.sns.gov$local/$file olcf#dtn_atlas$remote/$file;
+        ssh jmborr@cli.globusonline.org wait $id;
+        file=xtc2binpos_HA.tcl;
+        id=$(ssh jmborr@cli.globusonline.org transfer --generate-id);
+        ssh jmborr@cli.globusonline.org transfer --taskid $id -- neutrons#dtn01.sns.gov$local/$file olcf#dtn_atlas$remote/$file;
+        ssh jmborr@cli.globusonline.org wait $id;
+        echo $(date) 'step 1 on' $(hostname) >> $remote/cluster_and_transfer_CA.log;
+- fw_id: 2
+  spec:
+    _category: 'titan'
+    _tasks:
+    - _fw_name: ScriptTask
+      script: >
+        workdir=/lustre/atlas/scratch/jmborr/bip141/srckinase;
+	cd $workdir;
+	module load vmd;
+	aprun -n 1 -d 8 -j 1 vmd -dispdev text -eofexit -e  xtc2binpos_HA.tcl d_1-144_h_145-250_d2o_043.pdb sassena.dcd;
+    _queueadapter:
+      account: 'BIP141'
+- fw_id: 3
+  spec:
+    _category: 'titan'
+    _tasks:
+    - _fw_name: ScriptTask
+      script: >
+        module load fast_protein_cluster;
+        workdir=/lustre/atlas/scratch/jmborr/bip141/srckinase;
+	# Create HA.names file
+	trajfile="sassena.dcd";
+        cd $workdir;
+	nframes=`catdcd $trajfile |grep "Total frames"|cut -d ':' -f 2`;
+	for i in `seq 0 $nframes`;do printf "%05d\n" $i;done  > HA.names;
+	# Run clustering
+        export OMP_NUM_THREADS=8;
+        aprun -n 1 -d 8 -j 1 fast_protein_cluster -i HA -o HA --binary_coords --rmsd --nclusters 2 --nthreads 8 --hcomplete --gpu
+    _queueadapter:
+      account: 'BIP141'
+- fw_id: 4
+  spec:
+    _category: 'ftp'
+    _tasks:
+    - _fw_name: ScriptTask
+      script: >
+        local=/SNS/users/jbq/Downloads;
+        remote=/lustre/atlas/scratch/jmborr/bip141/srckinase;
+        ssh jmborr@cli.globusonline.org profile -n off;
+        file=CA.cluster.stats;
+        id=$(ssh jmborr@cli.globusonline.org transfer --generate-id);
+        ssh jmborr@cli.globusonline.org transfer --taskid $id -- olcf#dtn_atlas$remote/$file neutrons#dtn01.sns.gov$local/$file;
+        ssh jmborr@cli.globusonline.org wait $id;
+        file=CA.agglomeration.history;
+        id=$(ssh jmborr@cli.globusonline.org transfer --generate-id);
+        ssh jmborr@cli.globusonline.org transfer --taskid $id -- olcf#dtn_atlas$remote/$file neutrons#dtn01.sns.gov$local/$file;
+        ssh jmborr@cli.globusonline.org wait $id;
+        file=CA.clusters;
+        id=$(ssh jmborr@cli.globusonline.org transfer --generate-id);
+        ssh jmborr@cli.globusonline.org transfer --taskid $id -- olcf#dtn_atlas$remote/$file neutrons#dtn01.sns.gov$local/$file;
+        ssh jmborr@cli.globusonline.org wait $id;
+links:
+  1:
+  - 2
+  2:
+  - 3
+  3:
+  - 4
+metadata: {}

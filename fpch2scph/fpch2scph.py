@@ -1,3 +1,11 @@
+# -*- coding: utf-8 -*-
+
+"""Fast protein cluster hierarchical to scypi cluster hierarchy
+
+This module reads the output from a run of fast_protein_cluster and computes
+the linkage matrix for use with scipy.cluster.hierarchy
+"""
+
 import argparse
 import os
 import sys
@@ -5,7 +13,7 @@ import numpy as np
 from pdb import set_trace as tr
 
 def validate_history(filename):
-    """Examine the history file for validation.
+    """Examine the fast_protein_cluster output history file for validation.
 
        File contains lines of the format "int int int float". The last two lines
        must be of the form "int -1 -1 float".
@@ -84,7 +92,8 @@ def generate_linkage(history_handle):
     # insert the joining of the last two clusters with a fictitious distance
     fpc_id1 = remains[0]
     fpc_id2 = remains[1]
-    linkage_matrix.append([translation[fpc_id1], translation[fpc_id2], 2*distance, nsingletons])
+    final_distance = 1.1*distance  # fictious distance when joining the two clusters
+    linkage_matrix.append([translation[fpc_id1], translation[fpc_id2], final_distance, nsingletons])
 
     return np.array(linkage_matrix)  # shape is (nsingletons, 4)
 
@@ -100,7 +109,6 @@ def save_linkage(linkage_matrix, filename):
     :return: success of the saving process
     :rtype: bool
     """
-    tr()
     buffer=''
     for i in range(len(linkage_matrix)):
         row=linkage_matrix[i]
