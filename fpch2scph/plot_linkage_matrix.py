@@ -12,6 +12,7 @@ from matplotlib import pyplot as plt
 from scipy.cluster.hierarchy import dendrogram, linkage
 import numpy as np
 import argparse
+import sys
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Plots a dendogram from a scipy.cluster.hierarchy linkage matrix.")
