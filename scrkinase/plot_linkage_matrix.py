@@ -1,1 +1,1 @@
-/home/jbq/development/LDRDSANS/fpch2scph/plot_linkage_matrix.py
+/SNS/lustre/CAMM/users/jbq/development/LDRDSANS/fpch2scph/plot_linkage_matrix.py

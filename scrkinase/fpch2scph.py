@@ -1,1 +1,1 @@
-/home/jbq/development/LDRDSANS/fpch2scph/fpch2scph.py
+/SNS/lustre/CAMM/users/jbq/development/LDRDSANS/fpch2scph/fpch2scph.py
