@@ -32,3 +32,6 @@
 !*.xml
 !*.yaml
 junk*
+.idea
+.ipynb_checkpoints
+
