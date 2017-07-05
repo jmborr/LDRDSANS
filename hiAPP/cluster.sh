@@ -21,6 +21,7 @@ maxChunkIndex=`echo $[$nchunks-1]`
 prefixroot="p"
 python partition_trajectory.py $topology $trajectory $nchunks --prefix $prefixroot
 
+
 # Kmeans cluster of each chunk. Save cluster centroids to DCD file
 # (Parallel execution)
 centroidTrajs=""  # store file names for the centroid trajectories
@@ -28,7 +29,7 @@ centroidNames=""  # store the names of the centroids
 for i in `seq 0 $maxChunkIndex`;do
     prefix=`printf "%s%03d" $prefixroot $i`
     echo "Kmeans clustering chunk $i. Prefix is $prefix"
-    python kmeans_cluster.py ./$prefix $prefix --nclusters 10 --centroids &
+    python kmeans_cluster.py ./$prefix $prefix --nclusters 10 --centroids 
     centroidTrajs+=" ./$prefix/${prefix}.cluster.centroids.dcd"
     centroidNames+=" ./$prefix/${prefix}.cluster.centroids.names"
 done

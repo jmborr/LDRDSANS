@@ -28,6 +28,7 @@
 !*.py
 !*.sdf
 !*.sh
+!*.tcl
 !*.vmd
 !*.xml
 !*.yaml
