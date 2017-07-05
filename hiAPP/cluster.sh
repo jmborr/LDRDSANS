@@ -29,7 +29,7 @@ centroidNames=""  # store the names of the centroids
 for i in `seq 0 $maxChunkIndex`;do
     prefix=`printf "%s%03d" $prefixroot $i`
     echo "Kmeans clustering chunk $i. Prefix is $prefix"
-    python kmeans_cluster.py ./$prefix $prefix --nclusters 10 --centroids 
+    python kmeans_cluster.py ./$prefix $prefix --nclusters 100 --centroids #&
     centroidTrajs+=" ./$prefix/${prefix}.cluster.centroids.dcd"
     centroidNames+=" ./$prefix/${prefix}.cluster.centroids.names"
 done

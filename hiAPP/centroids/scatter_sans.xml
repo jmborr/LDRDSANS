@@ -1,0 +1,91 @@
+<!-- SANS scatering of protein in D2O. -->
+
+<root>
+
+<database>
+  <type>file</type>
+  <file>database/db-neutron-coherent.xml</file>
+</database>
+
+<sample>	
+  <structure>
+    <file>centroids.pdb</file>
+    <format>pdb</format>	
+  </structure>		
+  <framesets>
+    <frameset>			
+      <file>centroids.dcd</file>
+      <format>dcd</format>				
+    </frameset>		
+  </framesets>
+  <!--
+  <selections>
+    <selection>
+      <type>range</type>
+      <from>3774</from> 
+      <to>71327</to>
+      <name>water</name>
+    </selection>
+    <selection>
+      <type>range</type>
+      <from>0</from>
+      <to>3773</to>
+      <name>solute</name>
+    </selection>
+  </selections>
+  -->
+</sample>
+
+<scattering>    
+  <type>all</type>	
+  <dsp>
+    <type>square</type>   	    
+    <method>fftw</method>
+  </dsp>
+  <vectors>
+    <type>scans</type>
+    <scans>
+      <scan>
+	<from>0</from> 
+	<to>1</to>
+	<points>100</points> 
+	<base>
+	  <x>0.5</x>
+	  <y>0</y>
+	  <z>0</z> 
+     	</base>  
+      </scan>
+    </scans>
+  </vectors>
+  <average>
+    <orientation>
+      <type>vectors</type>
+      <vectors>	
+	<type>sphere</type>
+	<algorithm>boost_uniform_on_sphere</algorithm>
+    	<resolution>500</resolution>
+      </vectors>
+    </orientation>
+  </average>
+
+  <!--
+  <background>
+    <factor>
+      <selection>water</selection>
+    </factor>
+    <kappas>
+      <kappa>
+	<selection>water</selection> 
+	<value>1.49</value>
+      </kappa>
+      <kappa>
+	<selection>solute</selection>
+	<value>1.0</value>
+      </kappa>
+    </kappas>
+  </background>
+  -->
+
+</scattering>
+
+</root>
