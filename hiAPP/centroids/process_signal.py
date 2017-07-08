@@ -6,7 +6,7 @@ icq=Transpose(InputWorkspace='sans_fqt.Re')
 # as they have no meaning
 nh = icq.getNumberHistograms()
 icq=ExtractSpectra(icq,StartWorkspaceIndex=int((nh-1)/2), EndWorkspaceIndex=nh-1)
-SaveNexus(icq, os.path.join(cwd, 'centroids.sans.h5'))
+SaveNexus(icq, os.path.join(cwd, 'centroids.sans.nxs'))
 SaveAscii(icq, os.path.join(cwd, 'centroids.sans.dat'),
           ColumnHeader=False, WriteSpectrumID=False,
           Separator='Space')
