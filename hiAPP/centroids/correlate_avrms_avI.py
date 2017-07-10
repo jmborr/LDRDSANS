@@ -4,19 +4,15 @@ import numpy as np
 import scipy.cluster.hierarchy as sch
 import navigate
 import matplotlib.pyplot as plt
+from mantid import simpleapi as msapi
 
-"""
-Reads file rms.matrix to fetch centroid RMSD and Similarity in I(Q) for all centroid pairs.
-Finally, compare RMSD and Similarity
-"""
-# Location of sassena files containing I(Q)
-sId = '/SNS/CAMM/users/jbq/development/LDRDSANS/scrkinase/sassena'
+# Load centroid names
 cframe = tuple(str(int(l.strip()))
                for l in open('centroids.names').readlines())  # trajectory frame for each centroid
 ncentroids = len(cframe)
-qp_pair = lambda idx: iprofile.profile('{}/frame{}.h5.gz'.format(sId, cframe[idx]))
 
 # Populate rms and sim matrixes
+ws = msapi.LoadNexus("centroids.sans.nxs")  # Load I(Q) for each centroid
 rmsM = np.zeros(ncentroids ** 2).reshape(ncentroids, ncentroids)
 simM = np.zeros(ncentroids ** 2).reshape(ncentroids, ncentroids)
 counter = 0
@@ -28,17 +24,16 @@ for line in open('rms.matrix', 'r').readlines():
         break
     rmsM[id1][id2] = float(rms)
     rmsM[id2][id1] = rmsM[id1][id2]
-    q, p1 = qp_pair(id1)
-    p2 = qp_pair(id2).i
-    simM[id1][id2] = math.sqrt(iprofile.similarity(p1, p2))
+    simM[id1][id2] = math.sqrt(iprofile.similarity(ws.dataY(id1), ws.dataY(id2)))
     simM[id2][id1] = simM[id1][id2]
     counter += 1
-    print(counter)
+    if not counter%1000:
+        print(counter)
 
 # Calculate average rms and average sim between clusters
 rmsl = list()
 siml = list()
-max_cluster_level = 3
+max_cluster_level = 5
 Z = np.loadtxt('./centroids.linkage_matrix')
 root_node = sch.to_tree(Z)
 cad = navigate.clusters_afloat_depth(root_node, depth=max_cluster_level)
