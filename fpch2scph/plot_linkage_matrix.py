@@ -7,7 +7,8 @@ Thanks to Jorn's Blog
 <https://joernhees.de/blog/2015/08/26/scipy-hierarchical-clustering-and-dendrogram-tutorial/>
 """
 
-# needed imports
+from __future__ import print_function, absolute_import
+
 from matplotlib import pyplot as plt
 from scipy.cluster.hierarchy import dendrogram, linkage
 import numpy as np

@@ -5,6 +5,7 @@
 This module reads the output from a run of fast_protein_cluster and computes
 the linkage matrix for use with scipy.cluster.hierarchy
 """
+from __future__ import print_function, absolute_import
 
 import argparse
 import os

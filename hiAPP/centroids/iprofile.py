@@ -12,9 +12,10 @@ qi = namedtuple('qi', 'q i')
 def profile(gzipfile, log10=False):
     """
     Return momentum transfer and intensities 
-    :param gzipfile: gzipped sassena file
+    :param gzipfile: gzipped sassena file for a single conformation
     :param log10: return log10 of the intensities
-    :return: namedtuple qi
+    :return: namedtuple('qi', 'q i') with 'q' for list of Q values
+        and 'i' for the scattering profile.
     """
     col1 = np.s_[:,0]  # first column
     ft, ftname = tempfile.mkstemp(dir='/tmp')
