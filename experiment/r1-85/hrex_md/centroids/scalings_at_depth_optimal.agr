@@ -90,7 +90,7 @@
 @timestamp rot 0
 @timestamp font 0
 @timestamp char size 1.000000
-@timestamp def "Wed Oct 25 19:52:08 2017"
+@timestamp def "Sun Nov  5 17:29:10 2017"
 @with string
 @    string on
 @    string loctype view
@@ -100,7 +100,7 @@
 @    string font 6
 @    string just 0
 @    string char size 1.250000
-@    string def "<Rg>=26.66"
+@    string def "<Rg>=24.77"
 @with string
 @    string on
 @    string loctype view
@@ -110,7 +110,7 @@
 @    string font 6
 @    string just 0
 @    string char size 1.250000
-@    string def "<Rg>=22.66"
+@    string def "<Rg>=20.90"
 @with string
 @    string on
 @    string loctype view
@@ -120,17 +120,17 @@
 @    string font 6
 @    string just 0
 @    string char size 1.250000
-@    string def "<Rg>=20.70"
+@    string def "<Rg>=18.79"
 @with string
 @    string on
 @    string loctype view
-@    string 0.644935972061, 0.543655413272
+@    string 0.644935972061, 0.576251455181
 @    string color 2
 @    string rot 0
 @    string font 6
 @    string just 0
 @    string char size 1.250000
-@    string def "<Rg>=28.53"
+@    string def "<Rg>=26.94"
 @with string
 @    string on
 @    string loctype view
@@ -164,7 +164,7 @@
 @with string
 @    string on
 @    string loctype view
-@    string 0.6868451688, 0.494761350407
+@    string 0.691501746216, 0.518044237485
 @    string color 4
 @    string rot 0
 @    string font 6
@@ -411,8 +411,8 @@
 @    s0 legend  ""
 @target G0.S0
 @type xy
-1 0.644
-2 0.027
+1 0.613
+2 0.036
 3 0
-4 0.329
+4 0.351
 &

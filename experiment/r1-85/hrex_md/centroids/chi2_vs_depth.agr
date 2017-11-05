@@ -90,7 +90,7 @@
 @timestamp rot 0
 @timestamp font 0
 @timestamp char size 1.000000
-@timestamp def "Wed Oct 25 20:22:09 2017"
+@timestamp def "Sun Nov  5 17:26:06 2017"
 @r0 off
 @link r0 to g0
 @r0 type above
@@ -137,7 +137,7 @@
 @g0 fixedpoint format general general
 @g0 fixedpoint prec 6, 6
 @with g0
-@    world 0, 10, 9, 30
+@    world 0, 4, 9.5, 22
 @    stack world 0, 0, 0, 0
 @    znorm 1
 @    view 0.150000, 0.150000, 0.850000, 0.950000
@@ -168,7 +168,7 @@
 @    xaxis  label color 1
 @    xaxis  label place normal
 @    xaxis  tick on
-@    xaxis  tick major 1
+@    xaxis  tick major 2
 @    xaxis  tick minor ticks 4
 @    xaxis  tick default 6
 @    xaxis  tick place rounded true
@@ -327,18 +327,18 @@
 @    s0 errorbar riser linestyle 1
 @    s0 errorbar riser clip off
 @    s0 errorbar riser clip length 0.100000
-@    s0 comment "chi2_vs_depth.dat"
+@    s0 comment "/home/jbq/repositories/LDRDSANS/experiment/r1-85/hrex_md/centroids/chi2_vs_depth.dat"
 @    s0 legend  ""
 @target G0.S0
 @type xy
-0 29.21
-1 17.63
-2 19.99
-3 11.15
-4 11.69
-5 14.25
-6 14.68
-7 14.4
-8 13.41
-9 13.92
+0 19.38
+1 9.05
+2 10.99
+3 5.32
+4 5.52
+5 6.96
+6 7.26
+7 6.94
+8 6.56
+9 6.64
 &
